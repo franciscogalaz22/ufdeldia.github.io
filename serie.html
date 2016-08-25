@@ -9,11 +9,18 @@
 		<title>ufdeldia</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-       
+       <!--Ahora pondre el datepicker-->
+        <link rel="stylesheet" href="assets/css/default.css" id="theme_base">
+        <link rel="stylesheet" href="assets/css/default.date.css" id="theme_date">
+
+        <script src="assets/js/picker.js"></script>
+        <script src="assets/js/picker.date.js"></script>
+        
+        <!--Aqui empieza el query de google spreadsheets-->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['table']});
@@ -79,15 +86,74 @@ if (response.isError()) {
 							<!-- Post -->
 								<article class="box post">
 									<header>
-										<h2>Seleccione de la tabla las fechas que requiere. </h2>
+										<h2>Seleccione las fechas que requiere. </h2>
 									</header>
-									<div id="tablaUF" class="image featured">
-                                        <script>
-                                                                                        
+                                    
+                                    <!--Formulario para fechas deseadas-->
+                                    <div class="form-group">
+                                        <strong>Fecha Inicio</strong> 
+	                                   <span class="input-group">
+                                            <input type="text" class="date-input form-control" id="input_from" style="text-align:center"/>
+    	                                         
+                                        </span>
+                                        <strong>Fecha Final</strong>
+                                        <span class="input-group">
+                                            <input type="text" class="date-input form-control" id="input_to" style="text-align:center"/>
+    	                                         
+                                        </span>
+                                     
+                                         <script>
+                                            var from_$input = $('#input_from').pickadate({
+                                                selectMonths: true,
+                                                selectYears: 30,
+                                                min:[1990,1,1],
+                                                max:+30,
+                                                format:'dd/mm/yyyy'
+                                            }),
+                                                from_picker = from_$input.pickadate('picker')
+
+                                            var to_$input = $('#input_to').pickadate({
+                                                selectMonths: true,
+                                                selectYears: 30,
+                                                max:+30,
+                                                format:'dd/mm/yyyy'
+                                            }),
+                                                to_picker = to_$input.pickadate('picker')
+
+
+                                            // Check if there’s a “from” or “to” date to start with.
+                                            if ( from_picker.get('value') ) {
+                                                to_picker.set('min', from_picker.get('select'))
+                                            }
+                                             if ( to_picker.get('value') ) {
+                                                 from_picker.set('max', to_picker.get('select'))
+                                             }
+
+                                             // When something is selected, update the “from” and “to” limits.
+                                             from_picker.on('set', function(event) {
+                                                 if ( event.select ) {
+                                                     to_picker.set('min', from_picker.get('select'))    
+                                                 }
+                                                 else if ( 'clear' in event ) {
+                                                     to_picker.set('min', false)
+                                                 }
+                                             })
+                                             to_picker.on('set', function(event) {
+                                            if ( event.select ) {
+                                                from_picker.set('max', to_picker.get('select'))
+                                                                }
+                                            else if ( 'clear' in event ) {
+                                                from_picker.set('max', false)
+                                            }
+                                             })
                                         </script>
+                                    
                                     </div>
                                     
-									<h3>Y cópielas en su excel.</h3>
+                                    <!--Aqui empieza la tabla-->
+                                    <!--<div id="tablaUF" class="image featured"></div> -->
+                                    
+									<!--<h3>Y cópielas en su excel.</h3>-->
 									
 								</article>
 
