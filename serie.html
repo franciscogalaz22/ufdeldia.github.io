@@ -9,7 +9,8 @@
 		<title>ufdeldia</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" defer></script>
+        
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -17,41 +18,12 @@
         <link rel="stylesheet" href="assets/css/default.css" id="theme_base">
         <link rel="stylesheet" href="assets/css/default.date.css" id="theme_date">
 
-        <script src="assets/js/picker.js"></script>
-        <script src="assets/js/picker.date.js"></script>
-        
+        <script src="assets/js/picker.js" defer></script>
+        <script src="assets/js/picker.date.js" defer></script>
+        <script src="assets/js/calendarioScript.js" defer></script>
         <!--Aqui empieza el query de google spreadsheets-->
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['table']});
-      google.charts.setOnLoadCallback(drawTable);
-
-      function drawTable() {
-        var opts = {sendMethod: 'auto'};
-  // Replace the data source URL on next line with your data source URL.
-  var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1zBx43V6AhT-fmS6IJPIGkLL502RdznEYrcAtl3V8eq8/edit#gid=261964506', opts);
-
-  // Optional request to return only column C and the sum of column B, grouped by C members.
-  query.setQuery('select A,B');
-
-  // Send the query with a callback function.
-  query.send(handleQueryResponse);
-
-        
-      }
-        
-        function handleQueryResponse(response) {
-if (response.isError()) {
-    alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-    return;
-  }
-
-  var data = response.getDataTable();
-  var table = new google.visualization.Table(document.getElementById('tablaUF'));
-
-        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-}
-    </script>
+        <script src="https://www.gstatic.com/charts/loader.js" defer></script>
+        <script src="assets/js/extraeDatos.js" defer></script>
         
 	</head>
 	<body class="no-sidebar">
@@ -101,57 +73,16 @@ if (response.isError()) {
                                             <input type="text" class="date-input form-control" id="input_to" style="text-align:center"/>
     	                                         
                                         </span>
+                                        
+                                        <ul class="actions">
+							         <li><button class="button icon fa-bar-chart-o" id="botonCrearTabla">Crear Tabla</button></li>
+						                  </ul>
                                      
-                                         <script>
-                                            var from_$input = $('#input_from').pickadate({
-                                                selectMonths: true,
-                                                selectYears: 30,
-                                                min:[1990,1,1],
-                                                max:+30,
-                                                format:'dd/mm/yyyy'
-                                            }),
-                                                from_picker = from_$input.pickadate('picker')
-
-                                            var to_$input = $('#input_to').pickadate({
-                                                selectMonths: true,
-                                                selectYears: 30,
-                                                max:+30,
-                                                format:'dd/mm/yyyy'
-                                            }),
-                                                to_picker = to_$input.pickadate('picker')
-
-
-                                            // Check if there’s a “from” or “to” date to start with.
-                                            if ( from_picker.get('value') ) {
-                                                to_picker.set('min', from_picker.get('select'))
-                                            }
-                                             if ( to_picker.get('value') ) {
-                                                 from_picker.set('max', to_picker.get('select'))
-                                             }
-
-                                             // When something is selected, update the “from” and “to” limits.
-                                             from_picker.on('set', function(event) {
-                                                 if ( event.select ) {
-                                                     to_picker.set('min', from_picker.get('select'))    
-                                                 }
-                                                 else if ( 'clear' in event ) {
-                                                     to_picker.set('min', false)
-                                                 }
-                                             })
-                                             to_picker.on('set', function(event) {
-                                            if ( event.select ) {
-                                                from_picker.set('max', to_picker.get('select'))
-                                                                }
-                                            else if ( 'clear' in event ) {
-                                                from_picker.set('max', false)
-                                            }
-                                             })
-                                        </script>
                                     
                                     </div>
                                     
                                     <!--Aqui empieza la tabla-->
-                                    <!--<div id="tablaUF" class="image featured"></div> -->
+                                    <div id="tablaUF" class="image featured"></div> 
                                     
 									<!--<h3>Y cópielas en su excel.</h3>-->
 									
@@ -227,7 +158,7 @@ if (response.isError()) {
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/skel-viewport.min.js"></script>
 			<script src="assets/js/util.js"></script>
-            
+          
             
         
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
