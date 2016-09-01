@@ -14,7 +14,7 @@ $(document).ready(function() {
   var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1zBx43V6AhT-fmS6IJPIGkLL502RdznEYrcAtl3V8eq8/edit#gid=261964506', opts);
 
   // Optional request to return only column C and the sum of column B, grouped by C members.
-  query.setQuery("select A,B where A >= date '" + fechaI +"' AND date '" + fechaF + "' <= A ORDER BY A");
+  query.setQuery("select A,B where A >= date '" + fechaI + "' AND A <= date '" + fechaF + "' ORDER BY A");
 
   // Send the query with a callback function.
   query.send(handleQueryResponse);
@@ -27,8 +27,12 @@ if (response.isError()) {
     alert('Error in query: '+fechaI+fechaF + response.getMessage() + ' ' + response.getDetailedMessage());
     return;
   }
+var formatter1 = new google.visualization.DateFormat({pattern: 'dd/MM/yyyy'});
 
+            
   var data = response.getDataTable();
+            formatter1.format(data,0);
+            
   var table = new google.visualization.Table(document.getElementById('tablaUF'));
 
         table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
