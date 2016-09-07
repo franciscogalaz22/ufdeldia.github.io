@@ -12,6 +12,9 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <script src="https://www.gstatic.com/charts/loader.js" defer></script>
+        <script src="assets/js/extraeUF.js" defer></script>
+        
 	</head>
 	<body class="right-sidebar">
 		<div id="page-wrapper">
@@ -23,6 +26,7 @@
 						<!-- Logo -->
 							<h1 id="logo"><a href="index.html">ufDeldia.cl</a></h1>
 							<p>Calculadora UF | Serie Histórica</p>
+                            <h2 id="ufDeHoy" ></h2>
 
 						<!-- Nav -->
 							<nav id="nav">
@@ -40,20 +44,30 @@
 			<!-- Main -->
 				<div id="main-wrapper">
 					<div id="main" class="container">
-						<div id="content">
-
-							<!-- Post -->
-								<article class="box post">
-									<header>
-										<h2>Behold! This is the <strong>no sidebar</strong> layout<br />
-										with no sidebar at all!</h2>
+						<header>
+                                        <h2>Seleccione <strong>fecha de la UF</strong> y introduzca el monto a convertir.</h2>
 									</header>
-									<span class="image featured"><img src="images/pic04.jpg" alt="" /></span>
-									<h3>And yeah, that's basically it</h3>
-									
-								</article>
-
-						</div>
+                                    
+                                    <!--Formulario para fechas deseadas-->
+                                    <div class="row">
+                                        <div class="6u 12u(mobile)">
+                                            <strong>Fecha Inicio</strong> 
+	                                        <input type="text" class="date-input form-control" id="input_from" style="text-align:center"/>
+    	                                         
+                                        </div>
+                                        
+                                        <div class="6u 12u(mobile)">
+                                            <strong>Fecha Final</strong>   
+                                            <input type="text" class="date-input form-control" id="input_to" style="text-align:center"/>
+    	                                         
+                                        </div>
+                                        
+                                       
+                                    </div>
+                                    
+                                    <ul class="actions">
+							             <li><button class="button icon fa-arrow-right" id="botonConvertir">Convertir</button></li>
+						            </ul>
 					</div>
 				</div>
 
