@@ -6,17 +6,26 @@
 -->
 <html>
 	<head>
-		<title>Right Sidebar - Strongly Typed by HTML5 UP</title>
+		<title>Calculadora UF</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--Pondre el datepicker aca-->
+        <link rel="stylesheet" href="assets/css/default.css" id="theme_base">
+        <link rel="stylesheet" href="assets/css/default.date.css" id="theme_date">
+
+        <script src="assets/js/picker.js" defer></script>
+        <script src="assets/js/picker.date.js" defer></script>
+        <script src="assets/js/calendarioScript.js" defer></script>
+        
+		<!--aca cargo lo de google y la UF del dia-->
         <script src="https://www.gstatic.com/charts/loader.js" defer></script>
         <script src="assets/js/extraeUF.js" defer></script>
+        <script src="assets/js/convertirMonto.js" defer></script>
         
 	</head>
-	<body class="right-sidebar">
+	<body class="no-sidebar">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -45,26 +54,42 @@
 				<div id="main-wrapper">
 					<div id="main" class="container">
 						<header>
-                                        <h2>Seleccione <strong>fecha de la UF</strong> y introduzca el monto a convertir.</h2>
+                            <h2>Seleccione <strong>fecha de la UF</strong> e introduzca el<strong> monto</strong> a convertir.</h2>
 									</header>
                                     
                                     <!--Formulario para fechas deseadas-->
                                     <div class="row">
-                                        <div class="6u 12u(mobile)">
-                                            <strong>Fecha Inicio</strong> 
+                                        <div class="4u 12u(mobile)">
+                                            <strong>Fecha de la UF</strong> 
 	                                        <input type="text" class="date-input form-control" id="input_from" style="text-align:center"/>
     	                                         
                                         </div>
                                         
-                                        <div class="6u 12u(mobile)">
-                                            <strong>Fecha Final</strong>   
-                                            <input type="text" class="date-input form-control" id="input_to" style="text-align:center"/>
+                                        <div class="4u 12u(mobile)">
+                                            <strong>Monto</strong>   
+                                            <input type="number" class="date-input form-control" id="monto" style="text-align:center"/>
     	                                         
                                         </div>
                                         
-                                       
+                                        
                                     </div>
-                                    
+                        
+                                    <div class="row">
+                                        <div class="4u 12u(mobile)">
+                                            <strong>Convertir a: </strong><br>   
+                                            <input type="radio"  name="radioEleccion" id="ufElegido" value="UF" style="text-align:center"/>UF <br>
+                                            <input type="radio"  name="radioEleccion" id="pesosElegido" value="Pesos" style="text-align:center"/>Pesos 
+    	                                         
+                                        </div>
+                                        
+                                        <div class="4u 12u(mobile)">
+                                            <strong>Resultado :</strong>   
+                                            <span id="resultado"></span>
+    	                                         
+                                        </div>
+                                        
+                                    </div>
+                        
                                     <ul class="actions">
 							             <li><button class="button icon fa-arrow-right" id="botonConvertir">Convertir</button></li>
 						            </ul>
