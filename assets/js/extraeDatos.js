@@ -33,9 +33,29 @@ var formatter1 = new google.visualization.DateFormat({pattern: 'dd/MM/yyyy'});
   var data = response.getDataTable();
             formatter1.format(data,0);
             
-  var table = new google.visualization.Table(document.getElementById('tablaUF'));
+   var grafico = new google.visualization.LineChart(document.getElementById('graficoUF')); 
+   var table = new google.visualization.Table(document.getElementById('tablaUF'));
+            
+            
+  //var table = new google.visualization.Table(document.getElementById('tablaUF'));
 
-        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+        //table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+            
+  if(document.getElementById('graficoElegido').checked && document.getElementById('tablaElegido').checked) {
+    grafico.draw(data);
+    table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+   }
+  else if(document.getElementById('graficoElegido').checked) {
+    grafico.draw(data);
+     
+    } 
+  else if(document.getElementById('tablaElegido').checked) {
+    table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+    }   
+            
+              
+  
+          
 }
     
 }

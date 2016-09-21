@@ -19,7 +19,7 @@ $(document).ready(function() {
     
          
         
-        google.charts.load('current', {'packages':['table']});
+        google.charts.load('current', {'packages':['table','corechart']});
       google.charts.setOnLoadCallback(mandarQueryUF);
 
       function mandarQueryUF() {

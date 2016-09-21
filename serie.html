@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" defer></script>
-        
+        <meta name="description" content="Serie Histórica de la UF y Calculadora UF usando la fecha de la UF que tu elijas">
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -35,7 +35,7 @@
 					<div id="header" class="container">
 
 						<!-- Logo -->
-							<h1 id="logo"><a href="index.html">ufDeldia.cl</a></h1>
+							<h1 id="logo"><a href="index.html">ufdeldia.cl</a></h1>
 							<p>Calculadora UF | Serie Histórica</p>
                             <h2 id="ufDeHoy" ></h2>
 
@@ -63,13 +63,20 @@
                                     
                                     <!--Formulario para fechas deseadas-->
                                     <div class="row">
-                                        <div class="6u 12u(mobile)">
+                                        <div class="4u 12u(mobile)">
                                             <strong>Fecha Inicio</strong> 
 	                                        <input type="text" class="date-input form-control" id="input_from" style="text-align:center"/>
     	                                         
                                         </div>
                                         
-                                        <div class="6u 12u(mobile)">
+                                        <div class="4u 12u(mobile)">
+                                              
+                                            <input type="checkbox"  name="checkboxEleccion" id="tablaElegido" value="tabla" style="text-align:center"/>Tabla
+                                            <input type="checkbox"  name="checkboxEleccion" id="graficoElegido" value="grafico" style="text-align:center"/>Gráfico 
+    	                                         
+                                        </div>
+                                        
+                                        <div class="4u 12u(mobile)">
                                             <strong>Fecha Final</strong>   
                                             <input type="text" class="date-input form-control" id="input_to" style="text-align:center"/>
     	                                         
@@ -83,7 +90,8 @@
 						            </ul>
                                     
                         
-                                    <!--Aqui empieza la tabla-->
+                                    <!--Aqui empieza la tabla y gráfico-->
+                                    <div id="graficoUF"></div> 
                                     <div id="tablaUF" class="image featured"></div> 
                                   		
 					</section>
