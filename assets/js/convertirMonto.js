@@ -40,7 +40,8 @@ if (response.isError()) {
     else  {
   var montoConvertido=montoAConvertir/valorUF;
     } 
-    
+    //Aqui formateo el montoConvertido para que se visualiza mejor en la pagina. Le pongo comas y trunco el numero.
+    montoConvertido=truncateDecimals(montoConvertido,4);        
     var partes = montoConvertido.toString().split(".");
             partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             montoConvertido=partes.join(".");
@@ -50,7 +51,12 @@ if (response.isError()) {
    }
     else  {
   document.getElementById('resultado').innerHTML=" <strong>" + montoConvertido + "</strong> UF";
-    } 
+    }
+  //Aca formateo el valor de la UF para que se vea bonito, para ponerlo abajo del monto convertido.
+  var parts = valorUF.toString().split(".");
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            valorUF=parts.join(".");  
+  document.getElementById('valorUFTexto').innerHTML="<strong>Valor de la UF: " + valorUF + "</strong>";          
             
   
 }
@@ -60,3 +66,13 @@ if (response.isError()) {
       
     );
 });
+
+function truncateDecimals (num, digits) {
+    var numS = num.toString(),
+        decPos = numS.indexOf('.'),
+        substrLength = decPos == -1 ? numS.length : 1 + decPos + digits,
+        trimmedResult = numS.substr(0, substrLength),
+        finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
+
+    return parseFloat(finalResult);
+}

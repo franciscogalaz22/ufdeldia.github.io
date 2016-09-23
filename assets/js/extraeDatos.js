@@ -46,10 +46,12 @@ var formatter1 = new google.visualization.DateFormat({pattern: 'dd/MM/yyyy'});
     table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
    }
   else if(document.getElementById('graficoElegido').checked) {
+    document.getElementById('tablaUF').innerHTML="";    
     grafico.draw(data);
-     
+    
     } 
   else if(document.getElementById('tablaElegido').checked) {
+    document.getElementById('graficoUF').innerHTML="";    
     table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
     }   
             
