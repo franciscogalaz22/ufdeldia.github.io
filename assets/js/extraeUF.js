@@ -46,8 +46,8 @@ if (response.isError()) {
   //guardo resultado de query en data
   var data = response.getDataTable();
   
-  var formatter2 = new google.visualization.NumberFormat({ prefix: '$',decimalSymbol: ',', groupingSymbol: ',' });
-    formatter2.format(data, 0);
+  //var formatter2 = new google.visualization.NumberFormat({ prefix: '$',decimalSymbol: ',', groupingSymbol: ',' });
+    //formatter2.format(data, 0);
             
   //guardo valor de UF en valor, y utilizo un pequeño codigo para formatearlo y que tenga "," en los miles. -->13-06-2017 Ya no editaré el numero, lo dejare la coma como decimal.         
   var valor = data.getValue(0,0);
