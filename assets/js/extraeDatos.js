@@ -28,7 +28,7 @@ if (response.isError()) {
     return;
   }
 var formatter1 = new google.visualization.DateFormat({pattern: 'dd/MM/yyyy'});
-var formatter2 = new google.visualization.NumberFormat({ pattern: '##.###'});
+var formatter2 = new google.visualization.NumberFormat({ pattern: '##.###,##'});
                
 
             
