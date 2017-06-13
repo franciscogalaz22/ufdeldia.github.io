@@ -28,10 +28,13 @@ if (response.isError()) {
     return;
   }
 var formatter1 = new google.visualization.DateFormat({pattern: 'dd/MM/yyyy'});
+var formatter2 = new google.visualization.NumberFormat({ pattern: '##.###'});
+               
 
             
   var data = response.getDataTable();
             formatter1.format(data,0);
+            formatter2.format(data, 1);
             
    var grafico = new google.visualization.LineChart(document.getElementById('graficoUF')); 
    var table = new google.visualization.Table(document.getElementById('tablaUF'));
