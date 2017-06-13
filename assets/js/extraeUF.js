@@ -46,16 +46,15 @@ if (response.isError()) {
   //guardo resultado de query en data
   var data = response.getDataTable();
   
-             
-  //guardo valor de UF en valor, y utilizo un pequeño codigo para formatearlo y que tenga "," en los miles. -->13-06-2017 Ya no editaré el numero, lo dejare la coma como decimal.         
+  //13-06-2017 Editado          
+  //guardo valor de UF en valor, y utilizo un pequeño codigo para formatearlo y que tenga "." en los miles.     
   var valor = data.getValue(0,0);
   valor =valor.toString();         
   valor = valor.replace(".", ',');
-          
-  
-    //var parts = valor.toString().split(".");
-    //parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    //valor=parts.join(".");
+       
+  var parts = valor.toString().split(",");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    valor=parts.join(",");
   
   //doy formato a la fecha          
   today= dd + '/' + mm + '/' + yyyy;
