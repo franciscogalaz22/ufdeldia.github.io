@@ -47,11 +47,12 @@ if (response.isError()) {
   var data = response.getDataTable();
   
   //13-06-2017 Editado          
-  //guardo valor de UF en valor, y utilizo un pequeño codigo para formatearlo y que tenga "." en los miles.     
+  //guardo valor de UF en valor, y cambio el "." por "," en los decimales     
   var valor = data.getValue(0,0);
   valor =valor.toString();         
   valor = valor.replace(".", ',');
-       
+           
+  //utilizo un pequeño codigo para formatear "valor" y que tenga "." en los miles.     
   var parts = valor.toString().split(",");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     valor=parts.join(",");
