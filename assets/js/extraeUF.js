@@ -49,7 +49,8 @@ if (response.isError()) {
              
   //guardo valor de UF en valor, y utilizo un pequeño codigo para formatearlo y que tenga "," en los miles. -->13-06-2017 Ya no editaré el numero, lo dejare la coma como decimal.         
   var valor = data.getValue(0,0);
-  valor = valor.replace(/./g, ',');
+  valor =valor.toString();         
+  valor = valor.replace(".", ',');
           
   
     //var parts = valor.toString().split(".");
