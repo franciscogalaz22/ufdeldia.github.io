@@ -55,20 +55,28 @@
 				<div id="main-wrapper">
 					<div id="main" class="container">
 						<header>
-                            <h2>Seleccione <strong>fecha de la UF</strong> e introduzca el<strong> monto</strong> a convertir.</h2>
+                            <h2>Seleccione <strong>moneda Inicial y final, fecha Inicial y Final</strong> e introduzca el<strong> monto</strong> a convertir.</h2>
 									</header>
                                     
                                     <!--Formulario para fechas deseadas-->
                                     <div class="row">
-                                        <div class="4u 12u(mobile)">
-                                            <strong>Fecha de la UF</strong> 
+                                        <div class="3u 12u(mobile)">
+                                            <strong>Fecha Inicial</strong> 
 	                                        <input type="text" class="date-input form-control" id="input_from" style="text-align:center"/>
     	                                         
                                         </div>
                                         
-                                        <div class="4u 12u(mobile)">
-                                            <strong>Monto</strong>   
+                                        <div class="3u 12u(mobile)">
+                                            <strong>Monto a Convertir</strong>   
                                             <input type="number" class="date-input form-control" id="monto" style="text-align:center"/>
+    	                                         
+                                        </div>
+                                        
+                                        <div class="3u 12u(mobile)">
+                                            <strong>Moneda del Monto: </strong><br>   
+                                            <input type="radio"  name="radioEleccion1" id="ufElegidoI" value="UF" style="text-align:center"/>UF
+                                            <input type="radio"  name="radioEleccion1" id="pesosElegidoI" value="Pesos" style="text-align:center"/>Pesos 
+                                            <input type="radio"  name="radioEleccion1" id="dolarElegidoI" value="Dolar" style="text-align:center"/>Dólar 
     	                                         
                                         </div>
                                         
@@ -76,17 +84,28 @@
                                     </div>
                         
                                     <div class="row">
-                                        <div class="4u 12u(mobile)">
-                                            <strong>Convertir a: </strong><br>   
-                                            <input type="radio"  name="radioEleccion" id="ufElegido" value="UF" style="text-align:center"/>UF
-                                            <input type="radio"  name="radioEleccion" id="pesosElegido" value="Pesos" style="text-align:center"/>Pesos 
+                                        
+                                        <div class="3u 12u(mobile)">
+                                            <strong>Fecha Final</strong> 
+	                                        <input type="text" class="date-input form-control" id="input_to" style="text-align:center"/>
     	                                         
                                         </div>
                                         
-                                        <div class="4u 12u(mobile)">
+                                        <div class="3u 12u(mobile)">
+                                            <strong>Convertir a: </strong><br>   
+                                            <input type="radio"  name="radioEleccion2" id="ufElegidoF" value="UF" style="text-align:center"/>UF
+                                            <input type="radio"  name="radioEleccion2" id="pesosElegidoF" value="Pesos" style="text-align:center"/>Pesos 
+                                            <input type="radio"  name="radioEleccion2" id="dolarElegidoF" value="Dolar" style="text-align:center"/>Dólar
+    	                                         
+                                        </div>
+                                        
+                                        <div class="3u 12u(mobile)">
                                             <strong>Resultado :</strong>   
                                             <span id="resultado"></span><br>
-                                            <span id="valorUFTexto"></span>
+                                            <span id="valorUFTextoI"></span><br>
+                                            <span id="valorUFTextoF"></span><br>
+                                            <span id="valorDolarTextoI"></span><br>
+                                            <span id="valorDolarTextoF"></span><br>
     	                                         
                                         </div>
                                         
@@ -96,18 +115,63 @@
 							             <li><button class="button icon fa-arrow-right" id="botonConvertir">Convertir</button></li>
 						            </ul>
 					</div>
+                    
+                        <div class="12u 12u(mobile)" id="explicacionCalculo">
+                                    <h4 id="metodoCalculo">Método de Cálculo</h4><br>
+                                    <span>• UF a Pesos: Se utiliza el valor de la UF en la fecha Final para convertir el monto a pesos. </span><br>
+                                    <span>• UF a Dólar: Se utiliza el valor de la UF y USD/CLP en la fecha Final para convertir el monto a dólares.</span><br>
+                                    <span>• UF a UF: No se realiza ninguna conversión.</span><br>
+                                    <span>• Pesos a Pesos: Se utiliza el valor de la UF en la fecha Inicial para convertir el monto a UF y también se usa la UF en la fecha Final para convertirlo nuevamente a Pesos. </span><br>
+                                    <span>• Pesos a Dólar: Se utiliza el valor de UF Inicial para convertirlo a UF. Luego se usa valor UF y USD/CLP en la fecha Final para convertir el monto a dólares. </span><br>
+                                    <span>• Pesos a UF: Se utiliza el valor de la UF en la fecha Inicial para convertir el monto a UF. </span><br>
+                                    <span>• Dólar a Pesos: Se utiliza el valor de UF y USD/CLP en la fecha Inicial para convertir el monto a UF. Luego, con UF de fecha Final se convierte a pesos. </span><br>
+                                    <span>• Dólar a Dólar: Se utiliza el valor de la UF y USD/CLP en la fecha Inicial para convertir el monto a UF. Luego se vuelve a convertir a dólar utilizando UF y USD/CLP de la fecha Final. </span><br>
+                                    <span>• Dólar a UF: Se utiliza el valor de la UF y de USD/CLP en la fecha Inicial para convertir el monto a UF. </span><br>                                         
+                                            
+    	                                         
+                        </div>
+                    
 				</div>
 
 
 							
 
-			<!-- Footer -->
+			
 				
+					<!-- Footer -->
+				<div id="footer-wrapper">
+					<div id="footer" class="container">
+						<header>
+							<h2> <strong>About us:</strong></h2>
+						</header>
+						<div class="row">
+							
+							<div class="6u 12u(mobile)">
+								<section>
+									<p>Esta página solo tiene por objeto dar acceso a información de manera rápida y confiable. La data es extraida directamente de <a href="www.bcentral.cl">bcentral.cl</a> sin manipulación de por medio. <br><br>
+                                     Desarrollado por:   
+                                    </p>
+									<div class="row">
+										<div class="6u 12u(mobile)">
+											<ul class="icons">
+                                                
+												<li class="icon fa-linkedin">
+                                                    <a href="https://cl.linkedin.com/in/francisco-galaz-gil-6033874a">Francisco Galaz Gil</a></li>
+												
+								            </ul>
+										</div>
+										
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
 					<div id="copyright" class="container">
 						<ul class="links">
 							<li>&copy; ufdeldia.cl. All rights reserved.</li>
 						</ul>
 					</div>
+				</div>
 				
 
 		</div>
